@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Pagos</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Dashboard de Pagos</h1>
+            <p class="subtitle">Registro y seguimiento de pagos para María y Patrick</p>
+        </header>
+        
+        <div class="totals-grid">
+            <div class="total-card">
+                <h3>Total María</h3>
+                <div class="total-amount" id="total-maria">S/611</div>
+            </div>
+            <div class="total-card">
+                <h3>Total Patrick</h3>
+                <div class="total-amount" id="total-patrick">S/505</div>
+            </div>
+            <div class="total-card total-general-card">
+                <div class="percent-button-container">
+                    <button id="percent-btn" class="percent-button">30%</button>
+                    <button id="mypayment-btn" class="mypayment-button">Mi Pago</button>
+                </div>
+                <h3>Total General</h3>
+                <div class="total-amount" id="total-general">S/1116</div>
+                <div class="percent-result" id="percent-result">
+                    <div>30% del Total:</div>
+                    <div style="font-size: 1.2rem;">S/334.80</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="input-section">
+            <h2>Registrar Pagos</h2>
+            <p>Escribe los pagos en cualquier formato: "15/10 100 MARIA", "MARIA 100 15/10", "hoy 150 PATRICK", etc.</p>
+            
+            <!-- ✅ CORREGIDO: Input de archivos integrado correctamente -->
+            <div class="file-input-group">
+                <label for="txt-file" class="file-button">
+                    📁 Cargar Archivo TXT
+                    <input type="file" id="txt-file" accept=".txt" style="display: none;">
+                </label>
+                <span class="file-hint">o arrastra un archivo .txt al área de texto</span>
+            </div>
+            
+            <!-- ✅ CORREGIDO: Textarea única para arrastrar archivos -->
+            <textarea id="payment-notes" placeholder="Ejemplo: 
+maria 100
+patrick 50
+75 maria
+120 patrick
+
+O arrastra un archivo .txt aquí"></textarea>
+            
+            <div class="button-group">
+                <button id="process-btn">Procesar Pagos</button>
+                <button id="clear-btn" class="clear-button">Limpiar Todos los Pagos</button>
+                <button id="reset-btn" class="reset-button">Restablecer Datos de Ejemplo</button>
+                <button id="backup-btn" class="backup-button">Descargar Backup</button>
+                <button id="load-backup-btn" class="backup-button">Cargar Backup</button>
+                <input type="file" id="backup-file" accept=".json" style="display: none;">
+            </div>
+        </div>
+        
+        <div class="dashboard">
+            <div class="card">
+                <div class="person-selector">
+                    <button class="person-btn active" data-person="maria">María</button>
+                    <button class="person-btn" data-person="patrick">Patrick</button>
+                </div>
+                <h2>Calendario de Pagos</h2>
+                <div class="week-selector">
+                    <button id="prev-week">← Semana Anterior</button>
+                    <div class="current-week" id="current-week">3 nov - 9 nov</div>
+                    <button id="next-week">Semana Siguiente →</button>
+                </div>
+                <div class="calendar-header">
+                    <div>Lun</div>
+                    <div>Mar</div>
+                    <div>Mié</div>
+                    <div>Jue</div>
+                    <div>Vie</div>
+                    <div>Sáb</div>
+                    <div>Dom</div>
+                </div>
+                <div class="calendar" id="calendar">
+                    <!-- Los días del calendario se generarán con JavaScript -->
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2>Historial de Pagos</h2>
+                <div id="payment-history">
+                    <!-- El historial de pagos se generará con JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
