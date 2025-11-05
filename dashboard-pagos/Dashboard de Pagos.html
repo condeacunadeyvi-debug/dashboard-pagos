@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!-- saved from url=(0059)file:///C:/Users/Jmtps/Downloads/dashboard-pagos/index.html -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Pagos</title>
+    <link rel="stylesheet" href="./Dashboard de Pagos_files/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Dashboard de Pagos</h1>
+            <p class="subtitle">Registro y seguimiento de pagos para María y Patrick</p>
+        </header>
+        
+        <div class="totals-grid">
+            <div class="total-card">
+                <h3>Total María</h3>
+                <div class="total-amount" id="total-maria">S/611</div>
+            </div>
+            <div class="total-card">
+                <h3>Total Patrick</h3>
+                <div class="total-amount" id="total-patrick">S/505</div>
+            </div>
+            <div class="total-card total-general-card">
+                <div class="percent-button-container">
+                    <button id="percent-btn" class="percent-button">30%</button>
+                </div>
+                <h3>Total General</h3>
+                <div class="total-amount" id="total-general">S/1116</div>
+                <div class="percent-result" id="percent-result">
+        <div>30% del Total:</div>
+        <div style="font-size: 1.2rem;">S/334.80</div>
+    </div>
+            </div>
+        </div>
+        
+        <div class="input-section">
+            <h2>Registrar Pagos</h2>
+            <p>Escribe los pagos en cualquier formato: "15/10 100 MARIA", "MARIA 100 15/10", "hoy 150 PATRICK", etc.</p>
+            <textarea id="payment-notes" placeholder="Ejemplo: 15/10 100 MARIA, PATRICK 50 hoy, 200 hoy MARIA"></textarea>
+            <div class="button-group">
+                <button id="process-btn">Procesar Pagos</button>
+                <button id="clear-btn" class="clear-button">Limpiar Todos los Pagos</button>
+                <button id="reset-btn" class="reset-button">Restablecer Datos de Ejemplo</button>
+            </div>
+        </div>
+        
+        <div class="dashboard">
+            <div class="card">
+                <div class="person-selector">
+                    <button class="person-btn active" data-person="maria">María</button>
+                    <button class="person-btn" data-person="patrick">Patrick</button>
+                </div>
+                <h2>Calendario de Pagos</h2>
+                <div class="week-selector">
+                    <button id="prev-week">← Semana Anterior</button>
+                    <div class="current-week" id="current-week">3 nov - 9 nov</div>
+                    <button id="next-week">Semana Siguiente →</button>
+                </div>
+                <div class="calendar-header">
+                    <div>Lun</div>
+                    <div>Mar</div>
+                    <div>Mié</div>
+                    <div>Jue</div>
+                    <div>Vie</div>
+                    <div>Sáb</div>
+                    <div>Dom</div>
+                </div>
+                <div class="calendar" id="calendar"><div class="calendar-day"><div class="day-number">3</div></div><div class="calendar-day"><div class="day-number">4</div><div class="payment maria">S/88</div><div class="payment maria">S/84</div><div class="payment maria">S/84</div><div class="payment maria">S/61</div><div class="payment maria">S/70</div><div class="payment maria">S/49</div></div><div class="calendar-day"><div class="day-number">5</div></div><div class="calendar-day"><div class="day-number">6</div></div><div class="calendar-day"><div class="day-number">7</div></div><div class="calendar-day"><div class="day-number">8</div></div><div class="calendar-day"><div class="day-number">9</div></div></div>
+            </div>
+            
+            <div class="card">
+                <h2>Historial de Pagos</h2>
+                <div id="payment-history"><div class="payment-item" style="margin-bottom: 10px; padding: 10px; background-color: rgb(253, 235, 208); border-radius: 5px;">
+            <strong>Patrick</strong> - S/64 - 4/11/2025
+        </div><div class="payment-item" style="margin-bottom: 10px; padding: 10px; background-color: rgb(240, 230, 246); border-radius: 5px;">
+            <strong>María</strong> - S/84 - 4/11/2025
+        </div><div class="payment-item" style="margin-bottom: 10px; padding: 10px; background-color: rgb(253, 235, 208); border-radius: 5px;">
+            <strong>Patrick</strong> - S/84 - 4/11/2025
+        </div><div class="payment-item" style="margin-bottom: 10px; padding: 10px; background-color: rgb(240, 230, 246); border-radius: 5px;">
+            <strong>María</strong> - S/84 - 4/11/2025
+        </div><div class="payment-item" style="margin-bottom: 10px; padding: 10px; background-color: rgb(253, 235, 208); border-radius: 5px;">
+            <strong>Patrick</strong> - S/31 - 4/11/2025
+        </div><div class="payment-item" style="margin-bottom: 10px; padding: 10px; background-color: rgb(240, 230, 246); border-radius: 5px;">
+            <strong>María</strong> - S/61 - 4/11/2025
+        </div><div class="payment-item" style="margin-bottom: 10px; padding: 10px; background-color: rgb(253, 235, 208); border-radius: 5px;">
+            <strong>Patrick</strong> - S/84 - 4/11/2025
+        </div><div class="payment-item" style="margin-bottom: 10px; padding: 10px; background-color: rgb(240, 230, 246); border-radius: 5px;">
+            <strong>María</strong> - S/70 - 4/11/2025
+        </div><div class="payment-item" style="margin-bottom: 10px; padding: 10px; background-color: rgb(240, 230, 246); border-radius: 5px;">
+            <strong>María</strong> - S/49 - 4/11/2025
+        </div><div class="payment-item" style="margin-bottom: 10px; padding: 10px; background-color: rgb(253, 235, 208); border-radius: 5px;">
+            <strong>Patrick</strong> - S/72 - 4/11/2025
+        </div><div class="payment-item" style="margin-bottom: 10px; padding: 10px; background-color: rgb(240, 230, 246); border-radius: 5px;">
+            <strong>María</strong> - S/88 - 4/11/2025
+        </div><div class="payment-item" style="margin-bottom: 10px; padding: 10px; background-color: rgb(253, 235, 208); border-radius: 5px;">
+            <strong>Patrick</strong> - S/120 - 20/10/2023
+        </div><div class="payment-item" style="margin-bottom: 10px; padding: 10px; background-color: rgb(240, 230, 246); border-radius: 5px;">
+            <strong>María</strong> - S/75 - 18/10/2023
+        </div><div class="payment-item" style="margin-bottom: 10px; padding: 10px; background-color: rgb(253, 235, 208); border-radius: 5px;">
+            <strong>Patrick</strong> - S/50 - 16/10/2023
+        </div><div class="payment-item" style="margin-bottom: 10px; padding: 10px; background-color: rgb(240, 230, 246); border-radius: 5px;">
+            <strong>María</strong> - S/100 - 15/10/2023
+        </div></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./Dashboard de Pagos_files/app.js"></script>
+
+</body></html>
