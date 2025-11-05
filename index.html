@@ -15,92 +15,142 @@
         
         <div class="totals-grid">
             <div class="total-card">
-                <h3>Total María</h3>
-                <div class="total-amount" id="total-maria">S/611</div>
+                <h3>👩 Total María</h3>
+                <div class="total-amount" id="total-maria">S/0</div>
+                <div class="payment-count" id="count-maria">0 pagos</div>
             </div>
+            
             <div class="total-card">
-                <h3>Total Patrick</h3>
-                <div class="total-amount" id="total-patrick">S/505</div>
+                <h3>👨 Total Patrick</h3>
+                <div class="total-amount" id="total-patrick">S/0</div>
+                <div class="payment-count" id="count-patrick">0 pagos</div>
             </div>
+            
             <div class="total-card total-general-card">
                 <div class="percent-button-container">
-                    <button id="percent-btn" class="percent-button">30%</button>
-                    <button id="mypayment-btn" class="mypayment-button">Mi Pago</button>
+                    <button id="percent-btn" class="percent-button">📊 30%</button>
+                    <button id="mypayment-btn" class="mypayment-button">💰 Calcular</button>
                 </div>
-                <h3>Total General</h3>
-                <div class="total-amount" id="total-general">S/1116</div>
+                <h3>📈 Total General</h3>
+                <div class="total-amount" id="total-general">S/0</div>
+                <div class="payment-count" id="count-total">0 pagos totales</div>
                 <div class="percent-result" id="percent-result">
-                    <div>30% del Total:</div>
-                    <div style="font-size: 1.2rem;">S/334.80</div>
+                    <!-- Aquí aparecerán los resultados -->
                 </div>
+            </div>
+            
+            <!-- ✅ CUADRO DE MI PAGO AUTOMÁTICO -->
+            <div class="total-card my-payment-card">
+                <h3>💳 Mi Pago Automático</h3>
+                <div class="my-payment-amount" id="my-payment-amount">S/0</div>
+                <div class="payment-breakdown">
+                    <div class="breakdown-item">
+                        <span>📦 Total General:</span>
+                        <span id="breakdown-total">S/0</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span>📊 Mi 30%:</span>
+                        <span id="breakdown-percent">S/0</span>
+                    </div>
+                    <div class="breakdown-item highlight">
+                        <span>💰 Restante:</span>
+                        <span id="breakdown-remaining">S/0</span>
+                    </div>
+                </div>
+                <div class="auto-update">🔄 Actualizado automáticamente</div>
             </div>
         </div>
         
         <div class="input-section">
-            <h2>Registrar Pagos</h2>
-            <p>Escribe los pagos en cualquier formato: "15/10 100 MARIA", "MARIA 100 15/10", "hoy 150 PATRICK", etc.</p>
+            <h2>📥 Registrar Pagos</h2>
+            <p class="format-info">Formato: <strong>"maria 100"</strong>, <strong>"patrick 50"</strong>, <strong>"75 maria"</strong>, <strong>"m 100"</strong>, <strong>"p 50"</strong></p>
             
-            <!-- ✅ CORREGIDO: Input de archivos integrado correctamente -->
             <div class="file-input-group">
                 <label for="txt-file" class="file-button">
-                    📁 Cargar Archivo TXT
+                    📁 Seleccionar Archivo TXT
                     <input type="file" id="txt-file" accept=".txt" style="display: none;">
                 </label>
-                <span class="file-hint">o arrastra un archivo .txt al área de texto</span>
+                <span class="file-hint">o arrastra un archivo .txt directamente al área de texto ↓</span>
             </div>
             
-            <!-- ✅ CORREGIDO: Textarea única para arrastrar archivos -->
-            <textarea id="payment-notes" placeholder="Ejemplo: 
+            <textarea id="payment-notes" placeholder="💡 Ejemplos:
 maria 100
 patrick 50
 75 maria
 120 patrick
+m 200
+p 80
 
-O arrastra un archivo .txt aquí"></textarea>
+📁 También puedes arrastrar y soltar un archivo .txt aquí...
+Los pagos se procesarán automáticamente al soltar el archivo."></textarea>
             
             <div class="button-group">
-                <button id="process-btn">Procesar Pagos</button>
-                <button id="clear-btn" class="clear-button">Limpiar Todos los Pagos</button>
-                <button id="reset-btn" class="reset-button">Restablecer Datos de Ejemplo</button>
-                <button id="backup-btn" class="backup-button">Descargar Backup</button>
-                <button id="load-backup-btn" class="backup-button">Cargar Backup</button>
+                <button id="process-btn" class="process-button">✅ Procesar Pagos</button>
+                <button id="clear-btn" class="clear-button">🗑️ Limpiar Todo</button>
+                <button id="reset-btn" class="reset-button">🔄 Ejemplos</button>
+                <button id="backup-btn" class="backup-button">💾 Descargar Backup</button>
+                <button id="load-backup-btn" class="backup-button">📂 Cargar Backup</button>
                 <input type="file" id="backup-file" accept=".json" style="display: none;">
             </div>
         </div>
         
         <div class="dashboard">
-            <div class="card">
-                <div class="person-selector">
-                    <button class="person-btn active" data-person="maria">María</button>
-                    <button class="person-btn" data-person="patrick">Patrick</button>
+            <div class="card calendar-card">
+                <div class="card-header">
+                    <div class="person-selector">
+                        <button class="person-btn active" data-person="maria">
+                            <span class="person-icon">👩</span> María
+                        </button>
+                        <button class="person-btn" data-person="patrick">
+                            <span class="person-icon">👨</span> Patrick
+                        </button>
+                    </div>
+                    <h2>📅 Calendario de Pagos</h2>
                 </div>
-                <h2>Calendario de Pagos</h2>
+                
                 <div class="week-selector">
-                    <button id="prev-week">← Semana Anterior</button>
-                    <div class="current-week" id="current-week">3 nov - 9 nov</div>
-                    <button id="next-week">Semana Siguiente →</button>
+                    <button id="prev-week" class="week-nav">◀ Semana Anterior</button>
+                    <div class="current-week" id="current-week">Cargando...</div>
+                    <button id="next-week" class="week-nav">Semana Siguiente ▶</button>
                 </div>
-                <div class="calendar-header">
-                    <div>Lun</div>
-                    <div>Mar</div>
-                    <div>Mié</div>
-                    <div>Jue</div>
-                    <div>Vie</div>
-                    <div>Sáb</div>
-                    <div>Dom</div>
-                </div>
-                <div class="calendar" id="calendar">
-                    <!-- Los días del calendario se generarán con JavaScript -->
+                
+                <div class="calendar-container">
+                    <div class="calendar-header">
+                        <div>Lun</div>
+                        <div>Mar</div>
+                        <div>Mié</div>
+                        <div>Jue</div>
+                        <div>Vie</div>
+                        <div>Sáb</div>
+                        <div>Dom</div>
+                    </div>
+                    <div class="calendar" id="calendar">
+                        <!-- Los días del calendario se generarán con JavaScript -->
+                    </div>
                 </div>
             </div>
             
-            <div class="card">
-                <h2>Historial de Pagos</h2>
-                <div id="payment-history">
-                    <!-- El historial de pagos se generará con JavaScript -->
+            <div class="card history-card">
+                <div class="card-header">
+                    <h2>📋 Historial de Pagos</h2>
+                    <div class="history-stats">
+                        <span id="history-count">0 pagos</span>
+                    </div>
+                </div>
+                <div id="payment-history" class="payment-history">
+                    <div class="empty-state">
+                        <div class="empty-icon">📝</div>
+                        <p>No hay pagos registrados</p>
+                        <small>Agrega pagos usando el formulario superior</small>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <footer class="app-footer">
+            <p>💡 <strong>Consejo:</strong> Los datos se guardan automáticamente en tu navegador</p>
+            <p>🔄 Actualizado por última vez: <span id="last-update">--</span></p>
+        </footer>
     </div>
 
     <script src="js/app.js"></script>

@@ -26,6 +26,21 @@ function savePayments() {
     localStorage.setItem('dashboardPayments', JSON.stringify(payments));
 }
 
+// ✅ FUNCIÓN: Actualizar cuadro de Mi Pago automáticamente
+function updateMyPayment() {
+    const totalGeneral = payments.reduce((sum, p) => sum + p.amount, 0);
+    const thirtyPercent = totalGeneral * 0.3;
+    const remaining = totalGeneral - thirtyPercent;
+    
+    // Actualizar el cuadro principal
+    document.getElementById('my-payment-amount').textContent = `S/${thirtyPercent.toFixed(2)}`;
+    
+    // Actualizar el desglose
+    document.getElementById('breakdown-total').textContent = `S/${totalGeneral}`;
+    document.getElementById('breakdown-percent').textContent = `S/${thirtyPercent.toFixed(2)}`;
+    document.getElementById('breakdown-remaining').textContent = `S/${remaining.toFixed(2)}`;
+}
+
 // Inicializar la aplicación
 document.addEventListener('DOMContentLoaded', function() {
     loadPayments();
@@ -486,10 +501,12 @@ function loadBackupFile(event) {
     event.target.value = '';
 }
 
+// ✅ ACTUALIZADA: Función updateDashboard con Mi Pago
 function updateDashboard() {
     updateTotals();
     updateCalendar();
     updatePaymentHistory();
+    updateMyPayment(); // ← ¡AGREGA ESTA LÍNEA!
 }
 
 function updateTotals() {
@@ -652,3 +669,30 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+// ✅ Actualizar contadores de pagos
+function updatePaymentCounts() {
+    const mariaCount = payments.filter(p => p.person === 'maria').length;
+    const patrickCount = payments.filter(p => p.person === 'patrick').length;
+    const totalCount = payments.length;
+    
+    document.getElementById('count-maria').textContent = `${mariaCount} pago${mariaCount !== 1 ? 's' : ''}`;
+    document.getElementById('count-patrick').textContent = `${patrickCount} pago${patrickCount !== 1 ? 's' : ''}`;
+    document.getElementById('count-total').textContent = `${totalCount} pago${totalCount !== 1 ? 's' : ''} totales`;
+    document.getElementById('history-count').textContent = `${totalCount} pago${totalCount !== 1 ? 's' : ''}`;
+}
+
+// ✅ Actualizar última actualización
+function updateLastUpdate() {
+    const now = new Date();
+    document.getElementById('last-update').textContent = now.toLocaleString('es-ES');
+}
+
+// ✅ Actualizar updateDashboard
+function updateDashboard() {
+    updateTotals();
+    updateCalendar();
+    updatePaymentHistory();
+    updateMyPayment();
+    updatePaymentCounts(); // ← Nueva función
+    updateLastUpdate();    // ← Nueva función
+}
